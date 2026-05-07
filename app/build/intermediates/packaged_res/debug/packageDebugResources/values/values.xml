@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_grey">#080B14</color>
+    <color name="bg_card">#161929</color>
+    <color name="bg_deep">#080B14</color>
+    <color name="bg_elevated">#1E2235</color>
+    <color name="bg_surface">#0F1221</color>
+    <color name="border_medium">#2A2F4A</color>
+    <color name="border_subtle">#1E2235</color>
+    <color name="chart_1">#9D4EDD</color>
+    <color name="chart_2">#00E5A0</color>
+    <color name="chart_3">#FF6B9D</color>
+    <color name="chart_4">#00C8FF</color>
+    <color name="chart_5">#FFB800</color>
+    <color name="chart_6">#FF6348</color>
+    <color name="chart_7">#7BED9F</color>
+    <color name="chart_8">#FF4757</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimary">#9D4EDD</color>
+    <color name="colorPrimaryVariant">#7B2FBE</color>
+    <color name="colorSecondary">#00E5A0</color>
+    <color name="expense_red">#FF4757</color>
+    <color name="expense_red_bg">#2B0D11</color>
+    <color name="green_500">#00E5A0</color>
+    <color name="income_green">#00E5A0</color>
+    <color name="income_green_bg">#0D2B22</color>
+    <color name="purple_dark">#7B2FBE</color>
+    <color name="purple_light">#C77DFF</color>
+    <color name="purple_primary">#9D4EDD</color>
+    <color name="purple_surface">#1E1030</color>
+    <color name="red_500">#FF4757</color>
+    <color name="text_hint">#4A5070</color>
+    <color name="text_primary">#F0F0FF</color>
+    <color name="text_secondary">#8890B0</color>
+    <color name="warning_amber">#FFB800</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name">M-Pesa Tracker</string>
+    <style name="BigNumber">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="BottomSheetShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeTopRight">24dp</item>
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/bg_card</item>
+        <item name="shapeAppearanceOverlay">@style/BottomSheetShape</item>
+    </style>
+    <style name="CustomAlertDialog" parent="Theme.Material3.Dark.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+    </style>
+    <style name="GlassCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/bg_card</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/border_medium</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    <style name="OutlineButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">@color/purple_primary</item>
+        <item name="android:textColor">@color/purple_light</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+    <style name="PurpleButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/purple_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">14dp</item>
+    </style>
+    <style name="SectionHeader">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="StatCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/bg_card</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/border_subtle</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+    <style name="Theme.MpesaTracker" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/purple_primary</item>
+        <item name="colorPrimaryVariant">@color/purple_dark</item>
+        <item name="colorSecondary">@color/income_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/bg_deep</item>
+        <item name="android:statusBarColor">@color/bg_surface</item>
+        <item name="android:navigationBarColor">@color/bg_surface</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.MpesaTracker.BottomSheet" parent="Theme.Material3.Dark.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+</resources>

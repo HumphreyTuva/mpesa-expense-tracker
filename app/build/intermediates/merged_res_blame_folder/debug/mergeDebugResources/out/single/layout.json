@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\fragment_export.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\fragment_export.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\fragment_dashboard.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\item_budget.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\item_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\fragment_transactions.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\fragment_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\fragment_budget.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\fragment_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\dialog_add_budget.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\dialog_add_budget.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\item_transaction.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\item_transaction.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-56:/layout/dialog_manage_categories.xml",
+        "source": "com.mpesa.tracker.app-main-59:/layout/dialog_manage_categories.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-56:/layout/item_category_manage.xml",
+        "source": "com.mpesa.tracker.app-main-59:/layout/item_category_manage.xml"
+    },
+    {
+        "merged": "com.mpesa.tracker.app-mergeDebugResources-56:/layout/fragment_transactions.xml",
+        "source": "com.mpesa.tracker.app-main-59:/layout/fragment_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-mergeDebugResources-56:\\layout\\dialog_edit_transaction.xml",
+        "source": "C:\\Users\\8Tech\\.gradle\\daemon\\8.4\\com.mpesa.tracker.app-main-59:\\layout\\dialog_edit_transaction.xml"
+    }
+]
