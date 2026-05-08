@@ -37,6 +37,8 @@ public final class CategoryDao_Impl implements CategoryDao {
 
   private final EntityDeletionOrUpdateAdapter<Category> __deletionAdapterOfCategory;
 
+  private final EntityDeletionOrUpdateAdapter<Category> __updateAdapterOfCategory;
+
   public CategoryDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfCategory = new EntityInsertionAdapter<Category>(__db) {
@@ -65,6 +67,22 @@ public final class CategoryDao_Impl implements CategoryDao {
       protected void bind(@NonNull final SupportSQLiteStatement statement,
           @NonNull final Category entity) {
         statement.bindString(1, entity.getName());
+      }
+    };
+    this.__updateAdapterOfCategory = new EntityDeletionOrUpdateAdapter<Category>(__db) {
+      @Override
+      @NonNull
+      protected String createQuery() {
+        return "UPDATE OR ABORT `categories` SET `name` = ?,`isSystem` = ? WHERE `name` = ?";
+      }
+
+      @Override
+      protected void bind(@NonNull final SupportSQLiteStatement statement,
+          @NonNull final Category entity) {
+        statement.bindString(1, entity.getName());
+        final int _tmp = entity.isSystem() ? 1 : 0;
+        statement.bindLong(2, _tmp);
+        statement.bindString(3, entity.getName());
       }
     };
   }
@@ -96,6 +114,24 @@ public final class CategoryDao_Impl implements CategoryDao {
         __db.beginTransaction();
         try {
           __deletionAdapterOfCategory.handle(category);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object update(final Category category, final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __updateAdapterOfCategory.handle(category);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {

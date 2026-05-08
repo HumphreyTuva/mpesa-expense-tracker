@@ -23,6 +23,9 @@ public final class DialogEditTransactionBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final MaterialButton btnDelete;
+
+  @NonNull
   public final MaterialButton btnSave;
 
   @NonNull
@@ -41,10 +44,12 @@ public final class DialogEditTransactionBinding implements ViewBinding {
   public final SwitchMaterial switchExclude;
 
   private DialogEditTransactionBinding(@NonNull LinearLayout rootView,
-      @NonNull MaterialButton btnSave, @NonNull TextInputEditText etAmount,
-      @NonNull TextInputEditText etNotes, @NonNull TextInputEditText etRecipient,
-      @NonNull Spinner spinnerCategory, @NonNull SwitchMaterial switchExclude) {
+      @NonNull MaterialButton btnDelete, @NonNull MaterialButton btnSave,
+      @NonNull TextInputEditText etAmount, @NonNull TextInputEditText etNotes,
+      @NonNull TextInputEditText etRecipient, @NonNull Spinner spinnerCategory,
+      @NonNull SwitchMaterial switchExclude) {
     this.rootView = rootView;
+    this.btnDelete = btnDelete;
     this.btnSave = btnSave;
     this.etAmount = etAmount;
     this.etNotes = etNotes;
@@ -80,6 +85,12 @@ public final class DialogEditTransactionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_delete;
+      MaterialButton btnDelete = ViewBindings.findChildViewById(rootView, id);
+      if (btnDelete == null) {
+        break missingId;
+      }
+
       id = R.id.btn_save;
       MaterialButton btnSave = ViewBindings.findChildViewById(rootView, id);
       if (btnSave == null) {
@@ -116,8 +127,8 @@ public final class DialogEditTransactionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new DialogEditTransactionBinding((LinearLayout) rootView, btnSave, etAmount, etNotes,
-          etRecipient, spinnerCategory, switchExclude);
+      return new DialogEditTransactionBinding((LinearLayout) rootView, btnDelete, btnSave, etAmount,
+          etNotes, etRecipient, spinnerCategory, switchExclude);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

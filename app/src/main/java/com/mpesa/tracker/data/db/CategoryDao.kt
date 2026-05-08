@@ -12,6 +12,9 @@ interface CategoryDao {
     @Delete
     suspend fun delete(category: Category)
 
+    @Update
+    suspend fun update(category: Category)
+
     @Query("SELECT * FROM categories ORDER BY name ASC")
     fun getAllCategories(): Flow<List<Category>>
 

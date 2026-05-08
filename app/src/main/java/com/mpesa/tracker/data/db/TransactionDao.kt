@@ -35,6 +35,9 @@ interface TransactionDao {
     @Query("SELECT SUM(amount) FROM transactions WHERE isExcluded = 0 AND type = 'RECEIVE' AND timestamp BETWEEN :startMs AND :endMs")
     fun getTotalIncomeFlow(startMs: Long, endMs: Long): Flow<Double?>
 
+    @Query("UPDATE transactions SET category = :newCategory WHERE category = :oldCategory")
+    suspend fun updateCategoryName(oldCategory: String, newCategory: String)
+
     @Query("SELECT category, SUM(amount) as total FROM transactions WHERE isExcluded = 0 AND type IN ('SEND','PAYBILL','BUY_GOODS','WITHDRAW','AIRTIME') AND timestamp BETWEEN :startMs AND :endMs GROUP BY category ORDER BY total DESC")
     fun getExpensesByCategoryFlow(startMs: Long, endMs: Long): Flow<List<CategoryTotal>>
 

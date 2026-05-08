@@ -22,9 +22,11 @@ color colorOnPrimary
 color colorPrimary
 color colorPrimaryVariant
 color colorSecondary
+color emerald_green
 color expense_red
 color expense_red_bg
 color green_500
+color ic_launcher_background
 color income_green
 color income_green_bg
 color nav_item_color
@@ -50,6 +52,7 @@ drawable ic_nav_dashboard
 drawable ic_nav_export
 drawable ic_nav_transactions
 drawable ic_notification
+drawable ic_stat_iconr
 drawable spinner_background
 drawable spinner_dark
 drawable warning_banner
@@ -58,6 +61,7 @@ id btn_add_category
 id btn_cancel
 id btn_close
 id btn_delete
+id btn_edit
 id btn_export_csv
 id btn_manage_categories
 id btn_next_month
@@ -131,6 +135,7 @@ layout item_category_manage
 layout item_transaction
 menu bottom_nav_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 string app_name

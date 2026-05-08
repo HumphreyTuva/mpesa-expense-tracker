@@ -41,9 +41,9 @@ abstract class AppDatabase : RoomDatabase() {
                     "mpesa_tracker.db"
                 )
                     .addCallback(object : RoomDatabase.Callback() {
-                        override fun onCreate(db: SupportSQLiteDatabase) {
-                            super.onCreate(db)
-                            // Prepopulate default categories
+                        override fun onOpen(db: SupportSQLiteDatabase) {
+                            super.onOpen(db)
+                            // Ensure default categories exist
                             CoroutineScope(Dispatchers.IO).launch {
                                 val dao = getInstance(context).categoryDao()
                                 val defaults = listOf(

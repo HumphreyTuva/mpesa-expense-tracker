@@ -17,6 +17,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import com.mpesa.tracker.MpesaTrackerApp
 import com.mpesa.tracker.R
+import com.mpesa.tracker.data.model.Category
 import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.databinding.DialogEditTransactionBinding
 import com.mpesa.tracker.databinding.FragmentTransactionsBinding
@@ -110,13 +111,21 @@ class TransactionsFragment : Fragment() {
             .setView(dialogBinding.root)
             .create()
 
-        val categoryAdapter = CategoryManageAdapter { category ->
-            if (category.isSystem) {
-                Toast.makeText(context, "System categories cannot be deleted", Toast.LENGTH_SHORT).show()
-            } else {
-                viewModel.deleteCategory(category)
+        val categoryAdapter = CategoryManageAdapter(
+            onEdit = { category ->
+                showEditCategoryDialog(category)
+            },
+            onDelete = { category ->
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Delete Category")
+                    .setMessage("Are you sure you want to delete '${category.name}'?")
+                    .setPositiveButton("Delete") { _, _ ->
+                        viewModel.deleteCategory(category)
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
             }
-        }
+        )
 
         dialogBinding.rvCategories.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -137,6 +146,38 @@ class TransactionsFragment : Fragment() {
 
         dialogBinding.btnClose.setOnClickListener { dialog.dismiss() }
         dialog.show()
+    }
+
+    private fun showEditCategoryDialog(category: Category) {
+        val editText = android.widget.EditText(requireContext()).apply {
+            setText(category.name)
+            setSelection(category.name.length)
+            hint = "Category Name"
+        }
+
+        val container = android.widget.FrameLayout(requireContext())
+        val params = android.widget.FrameLayout.LayoutParams(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            val margin = (20 * resources.displayMetrics.density).toInt()
+            marginStart = margin
+            marginEnd = margin
+            topMargin = (8 * resources.displayMetrics.density).toInt()
+        }
+        container.addView(editText, params)
+
+        AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+            .setTitle("Edit Category")
+            .setView(container)
+            .setPositiveButton("Save") { _, _ ->
+                val newName = editText.text.toString().trim()
+                if (newName.isNotEmpty() && newName != category.name) {
+                    viewModel.renameCategory(category.name, newName)
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun showEditDialog(tx: Transaction) {
@@ -184,6 +225,19 @@ class TransactionsFragment : Fragment() {
 
             dialog.dismiss()
             showSnackbar("Transaction updated", tx)
+        }
+
+        dialogBinding.btnDelete.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Delete Transaction")
+                .setMessage("Are you sure you want to delete this transaction? This action cannot be undone.")
+                .setPositiveButton("Delete") { _, _ ->
+                    viewModel.deleteTransaction(tx)
+                    dialog.dismiss()
+                    showSnackbar("Transaction deleted")
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
         }
 
         dialog.show()

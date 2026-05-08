@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import com.mpesa.tracker.R
 import com.mpesa.tracker.data.model.Transaction
 import com.mpesa.tracker.data.model.TransactionType
@@ -46,7 +47,12 @@ object NotificationHelper {
         }
 
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification)
+            // Updated to your new icon name
+            .setSmallIcon(R.drawable.ic_stat_iconr)
+
+            // Adds the Emerald Green tint to the notification circle and app name
+            .setColor(ContextCompat.getColor(context, R.color.emerald_green))
+
             .setContentTitle(title)
             .setContentText(text)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

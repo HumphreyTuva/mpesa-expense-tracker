@@ -45,6 +45,8 @@ public final class TransactionDao_Impl implements TransactionDao {
 
   private final EntityDeletionOrUpdateAdapter<Transaction> __updateAdapterOfTransaction;
 
+  private final SharedSQLiteStatement __preparedStmtOfUpdateCategoryName;
+
   private final SharedSQLiteStatement __preparedStmtOfDeleteAll;
 
   public TransactionDao_Impl(@NonNull final RoomDatabase __db) {
@@ -151,6 +153,14 @@ public final class TransactionDao_Impl implements TransactionDao {
         statement.bindLong(14, entity.getId());
       }
     };
+    this.__preparedStmtOfUpdateCategoryName = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE transactions SET category = ? WHERE category = ?";
+        return _query;
+      }
+    };
     this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(__db) {
       @Override
       @NonNull
@@ -213,6 +223,34 @@ public final class TransactionDao_Impl implements TransactionDao {
           return Unit.INSTANCE;
         } finally {
           __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object updateCategoryName(final String oldCategory, final String newCategory,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfUpdateCategoryName.acquire();
+        int _argIndex = 1;
+        _stmt.bindString(_argIndex, newCategory);
+        _argIndex = 2;
+        _stmt.bindString(_argIndex, oldCategory);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfUpdateCategoryName.release(_stmt);
         }
       }
     }, $completion);

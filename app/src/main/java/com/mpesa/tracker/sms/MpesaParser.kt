@@ -62,8 +62,8 @@ object MpesaParser {
         val s = sender.uppercase()
         val b = body.uppercase()
 
-        // Skip Fuliza transactions as requested
-        if (b.contains("FULIZA")) return false
+        // Skip Fuliza and M-Shwari transactions as they are internal or credit
+        if (b.contains("FULIZA") || b.contains("M-SHWARI")) return false
 
         val senderMatch = s.contains("MPESA") || s.contains("M-PESA") || s.contains("SAFARICOM")
         val bodyMatch = b.contains("KSH") && (

@@ -13,4 +13,7 @@ interface CategoryRuleDao {
 
     @Query("DELETE FROM category_rules")
     suspend fun clearAllRules()
+
+    @Query("UPDATE category_rules SET category = :newCategory WHERE category = :oldCategory")
+    suspend fun updateCategoryName(oldCategory: String, newCategory: String)
 }

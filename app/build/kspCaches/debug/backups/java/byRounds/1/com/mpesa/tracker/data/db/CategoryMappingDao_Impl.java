@@ -8,6 +8,7 @@ import androidx.room.CoroutinesRoom;
 import androidx.room.EntityInsertionAdapter;
 import androidx.room.RoomDatabase;
 import androidx.room.RoomSQLiteQuery;
+import androidx.room.SharedSQLiteStatement;
 import androidx.room.util.CursorUtil;
 import androidx.room.util.DBUtil;
 import androidx.sqlite.db.SupportSQLiteStatement;
@@ -33,6 +34,8 @@ public final class CategoryMappingDao_Impl implements CategoryMappingDao {
 
   private final EntityInsertionAdapter<CategoryMapping> __insertionAdapterOfCategoryMapping;
 
+  private final SharedSQLiteStatement __preparedStmtOfUpdateCategoryName;
+
   public CategoryMappingDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfCategoryMapping = new EntityInsertionAdapter<CategoryMapping>(__db) {
@@ -47,6 +50,14 @@ public final class CategoryMappingDao_Impl implements CategoryMappingDao {
           @NonNull final CategoryMapping entity) {
         statement.bindString(1, entity.getSearchText());
         statement.bindString(2, entity.getCategory());
+      }
+    };
+    this.__preparedStmtOfUpdateCategoryName = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE category_mappings SET category = ? WHERE category = ?";
+        return _query;
       }
     };
   }
@@ -65,6 +76,34 @@ public final class CategoryMappingDao_Impl implements CategoryMappingDao {
           return Unit.INSTANCE;
         } finally {
           __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object updateCategoryName(final String oldCategory, final String newCategory,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfUpdateCategoryName.acquire();
+        int _argIndex = 1;
+        _stmt.bindString(_argIndex, newCategory);
+        _argIndex = 2;
+        _stmt.bindString(_argIndex, oldCategory);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfUpdateCategoryName.release(_stmt);
         }
       }
     }, $completion);

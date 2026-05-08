@@ -108,7 +108,20 @@ class TransactionRepository(
 
     suspend fun insertCategory(category: Category) = categoryDao.insert(category)
 
+    suspend fun updateCategory(category: Category) = categoryDao.update(category)
+
     suspend fun deleteCategory(category: Category) = categoryDao.delete(category)
+
+    suspend fun renameCategory(oldName: String, newName: String) {
+        // 1. Insert new category
+        categoryDao.insert(Category(name = newName))
+        // 2. Update all related data
+        transactionDao.updateCategoryName(oldName, newName)
+        categoryMappingDao.updateCategoryName(oldName, newName)
+        categoryRuleDao.updateCategoryName(oldName, newName)
+        // 3. Delete old category
+        categoryDao.delete(Category(name = oldName))
+    }
 
     fun monthRange(month: Int, year: Int): Pair<Long, Long> {
         val cal = Calendar.getInstance()

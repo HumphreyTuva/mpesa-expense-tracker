@@ -13,4 +13,7 @@ interface CategoryMappingDao {
 
     @Query("SELECT category FROM category_mappings WHERE searchText = :searchText LIMIT 1")
     suspend fun getCategoryForText(searchText: String): String?
+
+    @Query("UPDATE category_mappings SET category = :newCategory WHERE category = :oldCategory")
+    suspend fun updateCategoryName(oldCategory: String, newCategory: String)
 }

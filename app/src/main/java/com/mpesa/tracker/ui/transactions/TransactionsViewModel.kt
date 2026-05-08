@@ -75,8 +75,16 @@ class TransactionsViewModel(private val repo: TransactionRepository) : ViewModel
         viewModelScope.launch { repo.insertCategory(Category(name = name)) }
     }
 
+    fun updateCategory(category: Category) {
+        viewModelScope.launch { repo.updateCategory(category) }
+    }
+
     fun deleteCategory(category: Category) {
         viewModelScope.launch { repo.deleteCategory(category) }
+    }
+
+    fun renameCategory(oldName: String, newName: String) {
+        viewModelScope.launch { repo.renameCategory(oldName, newName) }
     }
 }
 

@@ -1482,6 +1482,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color emerald_green
 color error_color_material_dark
 color error_color_material_light
 color expense_red
@@ -1491,6 +1492,7 @@ color foreground_material_light
 color green_500
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color income_green
 color income_green_bg
 color m3_appbar_overlay_color
@@ -3100,6 +3102,7 @@ drawable ic_nav_export
 drawable ic_nav_transactions
 drawable ic_notification
 drawable ic_search_black_24
+drawable ic_stat_iconr
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3282,6 +3285,7 @@ id btn_add_category
 id btn_cancel
 id btn_close
 id btn_delete
+id btn_edit
 id btn_export_csv
 id btn_manage_categories
 id btn_next_month
@@ -3956,6 +3960,7 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu bottom_nav_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description

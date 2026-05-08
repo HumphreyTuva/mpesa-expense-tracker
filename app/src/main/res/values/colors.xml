@@ -5,6 +5,7 @@
     <color name="purple_dark">#7B2FBE</color>
     <color name="purple_surface">#1E1030</color>
     <color name="income_green">#00E5A0</color>
+    <color name="emerald_green">#00E5A0</color>
     <color name="income_green_bg">#0D2B22</color>
     <color name="expense_red">#FF4757</color>
     <color name="expense_red_bg">#2B0D11</color>

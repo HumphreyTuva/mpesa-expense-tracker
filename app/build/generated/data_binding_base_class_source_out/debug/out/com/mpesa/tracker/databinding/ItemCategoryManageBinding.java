@@ -24,12 +24,16 @@ public final class ItemCategoryManageBinding implements ViewBinding {
   public final ImageButton btnDelete;
 
   @NonNull
+  public final ImageButton btnEdit;
+
+  @NonNull
   public final TextView tvCategoryName;
 
   private ItemCategoryManageBinding(@NonNull LinearLayout rootView, @NonNull ImageButton btnDelete,
-      @NonNull TextView tvCategoryName) {
+      @NonNull ImageButton btnEdit, @NonNull TextView tvCategoryName) {
     this.rootView = rootView;
     this.btnDelete = btnDelete;
+    this.btnEdit = btnEdit;
     this.tvCategoryName = tvCategoryName;
   }
 
@@ -66,13 +70,20 @@ public final class ItemCategoryManageBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btn_edit;
+      ImageButton btnEdit = ViewBindings.findChildViewById(rootView, id);
+      if (btnEdit == null) {
+        break missingId;
+      }
+
       id = R.id.tv_category_name;
       TextView tvCategoryName = ViewBindings.findChildViewById(rootView, id);
       if (tvCategoryName == null) {
         break missingId;
       }
 
-      return new ItemCategoryManageBinding((LinearLayout) rootView, btnDelete, tvCategoryName);
+      return new ItemCategoryManageBinding((LinearLayout) rootView, btnDelete, btnEdit,
+          tvCategoryName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

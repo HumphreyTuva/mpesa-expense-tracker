@@ -34,6 +34,8 @@ public final class CategoryRuleDao_Impl implements CategoryRuleDao {
 
   private final SharedSQLiteStatement __preparedStmtOfClearAllRules;
 
+  private final SharedSQLiteStatement __preparedStmtOfUpdateCategoryName;
+
   public CategoryRuleDao_Impl(@NonNull final RoomDatabase __db) {
     this.__db = __db;
     this.__insertionAdapterOfCategoryRule = new EntityInsertionAdapter<CategoryRule>(__db) {
@@ -56,6 +58,14 @@ public final class CategoryRuleDao_Impl implements CategoryRuleDao {
       @NonNull
       public String createQuery() {
         final String _query = "DELETE FROM category_rules";
+        return _query;
+      }
+    };
+    this.__preparedStmtOfUpdateCategoryName = new SharedSQLiteStatement(__db) {
+      @Override
+      @NonNull
+      public String createQuery() {
+        final String _query = "UPDATE category_rules SET category = ? WHERE category = ?";
         return _query;
       }
     };
@@ -97,6 +107,34 @@ public final class CategoryRuleDao_Impl implements CategoryRuleDao {
           }
         } finally {
           __preparedStmtOfClearAllRules.release(_stmt);
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object updateCategoryName(final String oldCategory, final String newCategory,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        final SupportSQLiteStatement _stmt = __preparedStmtOfUpdateCategoryName.acquire();
+        int _argIndex = 1;
+        _stmt.bindString(_argIndex, newCategory);
+        _argIndex = 2;
+        _stmt.bindString(_argIndex, oldCategory);
+        try {
+          __db.beginTransaction();
+          try {
+            _stmt.executeUpdateDelete();
+            __db.setTransactionSuccessful();
+            return Unit.INSTANCE;
+          } finally {
+            __db.endTransaction();
+          }
+        } finally {
+          __preparedStmtOfUpdateCategoryName.release(_stmt);
         }
       }
     }, $completion);

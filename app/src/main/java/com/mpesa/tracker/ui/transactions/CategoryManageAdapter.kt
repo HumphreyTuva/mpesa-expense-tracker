@@ -10,6 +10,7 @@ import com.mpesa.tracker.data.model.Category
 import com.mpesa.tracker.databinding.ItemCategoryManageBinding
 
 class CategoryManageAdapter(
+    private val onEdit: (Category) -> Unit,
     private val onDelete: (Category) -> Unit
 ) : ListAdapter<Category, CategoryManageAdapter.ViewHolder>(CategoryDiffCallback()) {
 
@@ -25,8 +26,13 @@ class CategoryManageAdapter(
     inner class ViewHolder(private val binding: ItemCategoryManageBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(category: Category) {
             binding.tvCategoryName.text = category.name
-            binding.btnDelete.visibility = if (category.isSystem) View.GONE else View.VISIBLE
+            
+            val isSystem = category.isSystem
+            binding.btnDelete.visibility = if (isSystem) View.GONE else View.VISIBLE
+            binding.btnEdit.visibility = if (isSystem) View.GONE else View.VISIBLE
+            
             binding.btnDelete.setOnClickListener { onDelete(category) }
+            binding.btnEdit.setOnClickListener { onEdit(category) }
         }
     }
 
